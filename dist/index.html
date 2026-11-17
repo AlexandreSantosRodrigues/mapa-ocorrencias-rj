@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mapa de ocorrências no RJ</title>
+<link rel="stylesheet" href="leaflet.css">
+<style>
+*{box-sizing:border-box}
+body{margin:0;color:#172729;font:16px system-ui,sans-serif;background:#e2ecee}
+main{height:100vh;height:100dvh;display:flex;flex-direction:column}
+header,footer{padding:10px clamp(12px,3vw,28px);background:#fff}
+h1{font-size:clamp(20px,4vw,28px);margin:0}p{font-size:13px;margin:4px 0;color:#42585c}
+#map{flex:1;min-height:120px;background:#e2ecee}
+footer{font-size:12px;display:flex;align-items:center;justify-content:space-between;gap:6px 16px;flex-wrap:wrap}
+.map-legend{background:#fff;color:#172729;padding:8px 10px;border-radius:6px;box-shadow:0 1px 6px #0004;font:12px/1.4 system-ui,sans-serif}.legend{display:grid;grid-template-columns:repeat(2,max-content);gap:4px 10px;margin-top:4px}
+.legend span{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.legend i{width:13px;height:13px;display:inline-block;border:1px solid #0003;border-radius:2px}
+a{color:#294b50}.leaflet-interactive:focus{outline:2px solid #172729}
+header{display:flex;align-items:center;justify-content:space-between;gap:6px 16px;flex-wrap:wrap;padding-top:max(10px,env(safe-area-inset-top))}
+header,footer{padding-left:max(clamp(12px,3vw,28px),env(safe-area-inset-left));padding-right:max(clamp(12px,3vw,28px),env(safe-area-inset-right))}
+footer{padding-bottom:max(8px,env(safe-area-inset-bottom))}
+.filter{display:flex;align-items:center;gap:8px;min-width:0}
+.filter label{font-size:14px}
+#crime{min-width:0;max-width:100%;min-height:44px;font:inherit;color:inherit;background:white;border:1px solid #809597;border-radius:6px;padding:5px 8px}
+.leaflet-left{left:env(safe-area-inset-left)}
+.leaflet-right{right:env(safe-area-inset-right)}
+@media (pointer:coarse){.leaflet-touch .leaflet-bar a{width:44px;height:44px;line-height:44px}}
+@media (max-width:540px){
+  .filter{width:100%}
+  #crime{flex:1}
+  .map-legend{padding:6px 8px}
+}
+@media (max-height:440px) and (orientation:landscape){
+  header{padding-top:max(4px,env(safe-area-inset-top));padding-bottom:4px}
+  footer{padding-top:3px}
+  .legend{grid-template-columns:repeat(3,max-content)}
+}
+</style>
+<script defer src="leaflet.js"></script>
+<script defer src="areas.js"></script>
+<script defer src="map.js"></script>
+</head>
+<body>
+<main>
+<header><div><h1>Mapa de ocorrências no RJ</h1><p>Janeiro a julho de 2026 · Por área de delegacia</p></div><div class="filter"><label for="crime">Categoria</label> <select id="crime"><option value="cell">Roubo de celular</option><option value="vehicle">Roubo de veículo</option><option value="homicide">Homicídios consumados</option></select></div></header>
+<div id="map" role="region" aria-label="Mapa interativo de ocorrências"></div>
+<footer><a href="https://www.ispdados.rj.gov.br/estatistica.html">Fonte: ISP-RJ</a></footer>
+</main>
+</body>
+</html>
