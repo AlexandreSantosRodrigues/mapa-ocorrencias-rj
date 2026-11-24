@@ -43,9 +43,9 @@ footer{padding-bottom:max(8px,env(safe-area-inset-bottom))}
 </head>
 <body>
 <main>
-<header><div><h1>Mapa de ocorrências no RJ</h1><p>Janeiro a julho de 2026 · Por área de delegacia</p></div><div class="filter"><label for="crime">Categoria</label> <select id="crime"><option value="cell">Roubo de celular</option><option value="vehicle">Roubo de veículo</option><option value="homicide">Homicídios consumados</option></select></div></header>
+<header><div><h1>Mapa de ocorrências no RJ</h1><p id="period" aria-live="polite">Janeiro a julho de 2026 · Por área de delegacia</p></div><div class="filter"><label for="crime">Categoria</label> <select id="crime"><option value="cell">Roubo de celular</option><option value="vehicle">Roubo de veículo</option><option value="homicide">Homicídios consumados</option><option value="rape">Estupro</option><option value="harassment">Assédio sexual (mulheres)</option></select></div></header>
 <div id="map" role="region" aria-label="Mapa interativo de ocorrências"></div>
-<footer><a href="https://www.ispdados.rj.gov.br/estatistica.html">Fonte: ISP-RJ</a></footer>
+<footer><a id="source" href="https://www.ispdados.rj.gov.br/estatistica.html" target="_blank" rel="noopener">Fonte: ISP-RJ</a></footer>
 </main>
 </body>
 </html>

@@ -15,8 +15,25 @@ const homicideBands = [
   [Infinity, '61+', '#641427'],
 ];
 const category = document.querySelector('#crime');
-const currentBands = () => category.value === 'homicide' ? homicideBands : robberyBands;
-const currentUnit = () => category.value === 'homicide' ? 'Vítimas' : 'Ocorrências registradas';
+const harassmentBands = [
+  [0, '0', '#e9e5dd'], [1, '1', '#fbd29e'], [2, '2', '#f59c58'],
+  [3, '3', '#de5935'], [5, '4–5', '#a92c2b'], [Infinity, '6+', '#641427'],
+];
+const currentBands = () => category.value === 'harassment' ? harassmentBands
+  : ['homicide', 'rape'].includes(category.value) ? homicideBands : robberyBands;
+const currentUnit = () => category.value === 'harassment' ? 'Mulheres vítimas'
+  : ['homicide', 'rape'].includes(category.value) ? 'Vítimas' : 'Ocorrências registradas';
+function renderMetadata() {
+  const harassment = category.value === 'harassment';
+  document.querySelector('#period').textContent = harassment
+    ? 'Janeiro a junho de 2026 · Mulheres vítimas · Por área de delegacia'
+    : 'Janeiro a julho de 2026 · Por área de delegacia';
+  const source = document.querySelector('#source');
+  source.href = harassment ? 'https://ispconecta.rj.gov.br/ispmulher/'
+    : 'https://www.ispdados.rj.gov.br/estatistica.html';
+  source.textContent = harassment ? 'Fonte: ISP Mulher · ISP-RJ' : 'Fonte: ISP-RJ';
+}
+renderMetadata();
 const map = L.map('map', { minZoom: 6, maxZoom: 17 });
 const legendControl = L.control({ position: 'bottomright' });
 legendControl.onAdd = () => {
@@ -79,5 +96,6 @@ category.addEventListener('change', () => {
   overlay.remove();
   overlay = createOverlay();
   renderLegend();
+  renderMetadata();
 });
 map.fitBounds(overlay.getBounds(), { padding: [12, 12] });
